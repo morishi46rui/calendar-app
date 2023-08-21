@@ -113,7 +113,15 @@ const Calendar: React.FC = () => {
                                     }`}
                                     onClick={() => setSelectedDate(date)}
                                 >
-                                    {date ? date.getDate() : ''}
+                                    {date ? (
+                                        <div className="cell-content">
+                                            <span className="day-number">
+                                                {date.getDate()}
+                                            </span>
+                                        </div>
+                                    ) : (
+                                        ''
+                                    )}
                                 </td>
                             ))}
                         </tr>

@@ -34,7 +34,15 @@
 }
 
 .calendar-cell {
+    position: relative;
     cursor: pointer;
+}
+
+.cell-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 4px;
 }
 
 .calendar-cell.active:hover {
@@ -42,12 +50,18 @@
 }
 
 .calendar-cell.selected {
-    background-color: #007bff;
+    background-color: #464646;
     color: white;
 }
 
 .calendar-cell.today {
     background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-cell.today:hover {
+    background-color: #e8cb2b;
     color: white;
     font-weight: bold;
 }
