@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Button } from '@material-ui/core'
+import { Button, TextField } from '@material-ui/core'
 import './Calendar.css'
 
 const Calendar: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null)
     const [displayedDate, setDisplayedDate] = useState(new Date())
+    const [isInputVisible, setInputVisible] = useState(false)
 
     const daysInMonth = (year: number, month: number) =>
         new Date(year, month + 1, 0).getDate()
@@ -57,85 +58,124 @@ const Calendar: React.FC = () => {
         setDisplayedDate(new Date())
     }
 
+    const handleCellClick = (date: Date | null) => {
+        if (date) {
+            setSelectedDate(date)
+            setInputVisible(true)
+        }
+    }
+
+    const handleInputClose = () => {
+        setInputVisible(false)
+    }
+
     return (
         <div className="calendar-container">
-            <div className="calendar-header">
-                <Button
-                    className="today-button"
-                    onClick={handleTodayClick}
-                    variant="outlined"
-                    color="primary"
-                >
-                    Today
-                </Button>
-                <div className="month-change-buttons">
+            <div className="calendar">
+                <div className="calendar-header">
                     <Button
-                        onClick={() => handleMonthChange(-1)}
+                        className="today-button"
+                        onClick={handleTodayClick}
                         variant="outlined"
                         color="primary"
                     >
-                        前月
+                        Today
                     </Button>
-                    <h2 className="current-year-month">{`${currentYear}年 ${currentMonth}`}</h2>
-                    <Button
-                        onClick={() => handleMonthChange(1)}
-                        variant="outlined"
-                        color="primary"
-                    >
-                        次月
-                    </Button>
+                    <div className="month-change-buttons">
+                        <Button
+                            onClick={() => handleMonthChange(-1)}
+                            variant="outlined"
+                            color="primary"
+                        >
+                            前月
+                        </Button>
+                        <h2 className="current-year-month">{`${currentYear}年 ${currentMonth}`}</h2>
+                        <Button
+                            onClick={() => handleMonthChange(1)}
+                            variant="outlined"
+                            color="primary"
+                        >
+                            次月
+                        </Button>
+                    </div>
                 </div>
-            </div>
-            <table className="calendar">
-                <thead>
-                    <tr>
-                        <th>Sun</th>
-                        <th>Mon</th>
-                        <th>Tue</th>
-                        <th>Wed</th>
-                        <th>Thu</th>
-                        <th>Fri</th>
-                        <th>Sat</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {calendarData.map((week, rowIndex) => (
-                        <tr key={rowIndex}>
-                            {week.map((date, colIndex) => (
-                                <td
-                                    key={colIndex}
-                                    className={`calendar-cell ${
-                                        date ? 'active' : ''
-                                    } ${
-                                        date &&
-                                        selectedDate?.toDateString() ===
-                                            date.toDateString()
-                                            ? 'selected'
-                                            : ''
-                                    } ${
-                                        date &&
-                                        date.toDateString() ===
-                                            new Date().toDateString()
-                                            ? 'today'
-                                            : ''
-                                    }`}
-                                    onClick={() => setSelectedDate(date)}
-                                >
-                                    {date ? (
-                                        <div className="cell-content">
-                                            <span className="day-number">
-                                                {date.getDate()}
-                                            </span>
-                                        </div>
-                                    ) : (
-                                        ''
-                                    )}
-                                </td>
-                            ))}
+                <table className="calendar">
+                    <thead>
+                        <tr>
+                            <th>Sun</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {calendarData.map((week, rowIndex) => (
+                            <tr key={rowIndex}>
+                                {week.map((date, colIndex) => (
+                                    <td
+                                        key={colIndex}
+                                        className={`calendar-cell ${
+                                            date ? 'active' : ''
+                                        } ${
+                                            date &&
+                                            selectedDate?.toDateString() ===
+                                                date.toDateString()
+                                                ? 'selected'
+                                                : ''
+                                        } ${
+                                            date &&
+                                            date.toDateString() ===
+                                                new Date().toDateString()
+                                                ? 'today'
+                                                : ''
+                                        }`}
+                                        onClick={() => handleCellClick(date)}
+                                    >
+                                        {date ? (
+                                            <div className="cell-content">
+                                                <span className="day-number">
+                                                    {date.getDate()}
+                                                </span>
+                                            </div>
+                                        ) : (
+                                            ''
+                                        )}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <div className="event-form">
+                {isInputVisible && (
+                    <div className="event-form-content">
+                        <h3>予定を入力</h3>
+                        <TextField
+                            label="タイトル"
+                            variant="outlined"
+                            fullWidth
+                        />
+                        <TextField
+                            label="詳細"
+                            variant="outlined"
+                            multiline
+                            fullWidth
+                        />
+                        <Button
+                            onClick={handleInputClose}
+                            variant="outlined"
+                            color="secondary"
+                            style={{ marginTop: '20px' }}
+                        >
+                            閉じる
+                        </Button>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }
