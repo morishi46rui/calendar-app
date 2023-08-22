@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Button from '@material-ui/core/Button'
+import { Button } from '@material-ui/core'
 import './Calendar.css'
 
 const Calendar: React.FC = () => {
@@ -47,15 +47,9 @@ const Calendar: React.FC = () => {
     })
     const currentYear = displayedDate.getFullYear()
 
-    const handlePrevMonth = () => {
+    const handleMonthChange = (monthOffset: number) => {
         const newDisplayedDate = new Date(displayedDate)
-        newDisplayedDate.setMonth(newDisplayedDate.getMonth() - 1)
-        setDisplayedDate(newDisplayedDate)
-    }
-
-    const handleNextMonth = () => {
-        const newDisplayedDate = new Date(displayedDate)
-        newDisplayedDate.setMonth(newDisplayedDate.getMonth() + 1)
+        newDisplayedDate.setMonth(newDisplayedDate.getMonth() + monthOffset)
         setDisplayedDate(newDisplayedDate)
     }
 
@@ -63,7 +57,7 @@ const Calendar: React.FC = () => {
         <div className="calendar-container">
             <div className="calendar-header">
                 <Button
-                    onClick={handlePrevMonth}
+                    onClick={() => handleMonthChange(-1)}
                     variant="outlined"
                     color="primary"
                 >
@@ -71,7 +65,7 @@ const Calendar: React.FC = () => {
                 </Button>
                 <h2>{`${currentYear}年 ${currentMonth}`}</h2>
                 <Button
-                    onClick={handleNextMonth}
+                    onClick={() => handleMonthChange(1)}
                     variant="outlined"
                     color="primary"
                 >
