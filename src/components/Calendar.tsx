@@ -53,24 +53,38 @@ const Calendar: React.FC = () => {
         setDisplayedDate(newDisplayedDate)
     }
 
+    const handleTodayClick = () => {
+        setDisplayedDate(new Date())
+    }
+
     return (
         <div className="calendar-container">
             <div className="calendar-header">
                 <Button
-                    onClick={() => handleMonthChange(-1)}
+                    className="today-button"
+                    onClick={handleTodayClick}
                     variant="outlined"
                     color="primary"
                 >
-                    前月
+                    Today
                 </Button>
-                <h2>{`${currentYear}年 ${currentMonth}`}</h2>
-                <Button
-                    onClick={() => handleMonthChange(1)}
-                    variant="outlined"
-                    color="primary"
-                >
-                    次月
-                </Button>
+                <div className="month-change-buttons">
+                    <Button
+                        onClick={() => handleMonthChange(-1)}
+                        variant="outlined"
+                        color="primary"
+                    >
+                        前月
+                    </Button>
+                    <h2 className="current-year-month">{`${currentYear}年 ${currentMonth}`}</h2>
+                    <Button
+                        onClick={() => handleMonthChange(1)}
+                        variant="outlined"
+                        color="primary"
+                    >
+                        次月
+                    </Button>
+                </div>
             </div>
             <table className="calendar">
                 <thead>
