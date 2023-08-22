@@ -1,0 +1,101 @@
+.calendar-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100vh;
+    padding: 10px;
+}
+
+.calendar {
+    width: 60%;
+    max-width: 800px;
+    margin-right: 20px;
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.month-change-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40px;
+}
+
+.current-year-month {
+    margin: 20px;
+}
+
+.calendar {
+    border-collapse: collapse;
+    height: 80vh;
+    width: 80vh;
+}
+
+.calendar th,
+.calendar td {
+    width: 40px;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.calendar th {
+    background-color: #f0f0f0;
+}
+
+.calendar-cell {
+    position: relative;
+    cursor: pointer;
+}
+
+.cell-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 4px;
+}
+
+.calendar-cell.active:hover {
+    background-color: #f0f0f0;
+}
+
+.calendar-cell.selected {
+    background-color: #464646;
+    color: white;
+}
+
+.calendar-cell.today {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-cell.today:hover {
+    background-color: #e8cb2b;
+    color: white;
+    font-weight: bold;
+}
+
+.event-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-form-content {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}

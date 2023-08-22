@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -45,7 +47,7 @@
   "prettier": {
     "semi": false,
     "singleQuote": true,
-    "tabWidth": 2,
+    "tabWidth": 4,
     "trailingComma": "all"
   },
   "devDependencies": {
