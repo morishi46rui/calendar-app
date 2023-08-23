@@ -92,6 +92,16 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.event-form.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .event-form-content {

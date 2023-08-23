@@ -150,31 +150,25 @@ const Calendar: React.FC = () => {
                     </tbody>
                 </table>
             </div>
-            <div className="event-form">
-                {isInputVisible && (
-                    <div className="event-form-content">
-                        <h3>予定を入力</h3>
-                        <TextField
-                            label="タイトル"
-                            variant="outlined"
-                            fullWidth
-                        />
-                        <TextField
-                            label="詳細"
-                            variant="outlined"
-                            multiline
-                            fullWidth
-                        />
-                        <Button
-                            onClick={handleInputClose}
-                            variant="outlined"
-                            color="secondary"
-                            style={{ marginTop: '20px' }}
-                        >
-                            閉じる
-                        </Button>
-                    </div>
-                )}
+            <div className={`event-form ${isInputVisible ? 'active' : ''}`}>
+                <div className="event-form-content">
+                    <h3>予定を入力</h3>
+                    <TextField label="タイトル" variant="outlined" fullWidth />
+                    <TextField
+                        label="詳細"
+                        variant="outlined"
+                        multiline
+                        fullWidth
+                    />
+                    <Button
+                        onClick={handleInputClose}
+                        variant="outlined"
+                        color="secondary"
+                        style={{ marginTop: '20px' }}
+                    >
+                        閉じる
+                    </Button>
+                </div>
             </div>
         </div>
     )
